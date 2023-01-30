@@ -1,0 +1,130 @@
+<div class="register-form">
+  <h2 class="text-center">Booking Form</h2>
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col mb-3">
+        <label class="form-label">Traveller Name</label>
+        <input
+          type="text"
+          formControlName="travellerName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.travellerName.errors }"
+        />
+        <div
+          *ngIf="submitted && f.travellerName.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.travellerName.errors?.['required']">
+            <sup>*</sup>Traveller Name is required
+          </div>
+        </div>
+      </div>
+      <!--TravellerFromControl-->
+      <div class="col mb-3">
+        <label class="form-label">Traveller Email</label>
+        <input
+          type="text"
+          formControlName="travellerEmail"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.travellerEmail.errors }"
+        />
+        <div
+          *ngIf="submitted && f.travellerEmail.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.travellerEmail.errors?.['required']">
+            <sup>*</sup>Traveller Email is required
+          </div>
+          <div *ngIf="f.travellerEmail.errors.email">
+            <sup>*</sup>Traveller Email must be a valid email address
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--row-->
+    <div class="row">
+      <div class="col mb-3">
+        <label class="form-label">Channel</label>
+        <select
+          class="form-control d-block w-100"
+          formControlName="channel"
+          [ngClass]="{ 'is-invalid': submitted && f.channel.errors }"
+        >
+          <option value="">Choose...</option>
+          <option *ngFor="let ChannelList of channel" [ngValue]="ChannelList">
+            {{ ChannelList }}
+          </option>
+        </select>
+        <!-- error block -->
+        <div
+          class="invalid-feedback"
+          *ngIf="submitted && f.channel.errors?.['required']"
+        >
+          <sup>*</sup>Please enter channel name
+        </div>
+      </div>
+
+      <div class="col mb-3">
+        <label class="form-label">Travel Date</label>
+        <input
+          type="datetime-local"
+          formControlName="travelDate"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.travelDate.errors }"
+        />
+        <div *ngIf="submitted && f.travelDate.errors" class="invalid-feedback">
+          <div *ngIf="f.travelDate.errors?.['required']">
+            <sup>*</sup>Traveller Date is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label class="form-label">Booking price</label>
+        <input
+          type="text"
+          formControlName="bookingPrice"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.bookingPrice.errors }"
+        />
+        <div
+          *ngIf="submitted && f.bookingPrice.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.bookingPrice.errors?.['required']">
+            <sup>*</sup>Booking price is required
+          </div>
+          <div *ngIf="f.bookingPrice.errors?.['pattern']">
+            <sup>*</sup>Please enter valid booking price
+          </div>
+        </div>
+      </div>
+      <!--TravellerFromControl-->
+    </div>
+    <div class="row">
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          formControlName="meetGreet"
+          id="meetGreet"
+          class="form-check-input"
+          [ngClass]="{ 'is-invalid': submitted && f.meetGreet.errors }"
+        />
+        <label class="form-check-label">Meet & Greet</label>
+        <div *ngIf="submitted && f.meetGreet.errors" class="invalid-feedback">
+          Meet & Greet is required
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-primary me-2">Book Now</button>
+      <button class="btn btn-secondary" (click)="onReset()" type="reset">
+        Cancel
+      </button>
+    </div>
+  </form>
+  <!--formGroup-->
+</div>
+<!--EndBookingForm-->

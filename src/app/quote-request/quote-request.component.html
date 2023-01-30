@@ -1,0 +1,42 @@
+<div class="listing">
+  <h2>Quote Request Listing</h2>
+  <div class="row listing-display">
+    <div class="col-md-4">
+      <span class="totalrecords"
+        >Total Number of listing: <b>{{ totalRecords }}</b></span
+      >
+    </div>
+    <div class="col-md-4">
+      <span class="totalrecords"
+        >Minimum Price: <b>{{ minimumPrice }}</b></span
+      ><br />
+      <span class="totalrecords"
+        >MaximumPrice: <b>{{ maximumPrice }}</b></span
+      >
+    </div>
+    <div class="col-md-4">
+      <span class=""
+        >Average Price: <b>{{ fixedAvgPrice }}</b></span
+      >
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price per Passenger</th>
+        <th>Vehicle Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of maxPassengersList">
+        <td>{{ quote.name }}</td>
+        <td>{{ quote.pricePerPassenger }}</td>
+        <td>
+          Vehicle Name: {{ quote?.vehicleType?.name }} <br />
+          Max Passengers: <b>{{ quote?.vehicleType?.maxPassengers }}</b>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
